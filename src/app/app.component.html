@@ -1,0 +1,12 @@
+<h1 style="text-align: center">{{title}}</h1>
+
+<duallist [leftList]="leftList" [rightList]="rightList"></duallist>
+
+<div style="display: flex; flex-direction: row; justify-content: center;">
+  <pre style="width: 40%">
+    <small>{{ leftList | json}}</small>
+  </pre>
+  <pre style="width:40%; margin-left:85px;">
+    <small>{{ rightList | json}}</small>
+  </pre>
+</div>

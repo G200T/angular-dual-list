@@ -1,0 +1,40 @@
+<div class="dual-list">
+  <div class="list panel panel-default pull-left">
+    <div class="panel-heading">
+      <label>{{ leftTitle }}</label>
+      <div class="btn-group">
+        <button class="btn btn-default" (click)="selectAll(_leftList)" [disabled]="isSelectAll(_leftList)">All</button>
+        <button class="btn btn-default" (click)="selectNone(_leftList)" [disabled]="isSelectNone(_leftList)">None</button>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of _leftList.list" (click)="selectItem(_leftList.selected, item)"
+          [ngClass]="{active: isSelected(_leftList.selected, item)}">
+        <span>{{ item[display] }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="btn-group-vertical">
+    <button type="button" class="btn btn-primary add" (click)="moveSelectedItems(_leftList, _rightList)"
+            [disabled]="!_leftList.selected.length">></button>
+    <button type="button" class="btn btn-primary remove" (click)="moveSelectedItems(_rightList, _leftList)"
+            [disabled]="!_rightList.selected.length"><</button>
+  </div>
+
+  <div class="list panel panel-default pull-left">
+    <div class="panel-heading">
+      <label>{{ rightTitle }}</label>
+      <div class="btn-group">
+        <button class="btn btn-default" (click)="selectAll(_rightList)" [disabled]="isSelectAll(_rightList)">All</button>
+        <button class="btn btn-default" (click)="selectNone(_rightList)" [disabled]="isSelectNone(_rightList)">None</button>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item"  *ngFor="let item of _rightList.list" (click)="selectItem(_rightList.selected, item)"
+          [ngClass]="{active: isSelected(_rightList.selected, item)}">
+        <span>{{ item[display] }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

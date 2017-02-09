@@ -1,0 +1,54 @@
+.dual-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.dual-list .list {
+  width: 40%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.dual-list .list .panel-heading {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  align-items: center;
+}
+
+.dual-list .list ul {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  max-height: 265px;
+  min-height: 265px;
+}
+
+.dual-list .list ul li:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.dual-list .list ul li label, .list ul li {
+  cursor: pointer;
+}
+
+.dual-list .btn-group-vertical {
+  padding: 0 25px;
+}
+
+.dual-list .btn-group-vertical .add {
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
+}
+
+.dual-list .btn-group-vertical .remove {
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
