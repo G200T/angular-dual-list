@@ -3,6 +3,9 @@
 It's simple angular2 dual-list component.
 For this component need bootstrap styles.
 
+## Demo
+https://g200t.github.io/angular2-dual-list/
+
 ## Usage
 Copy `duallist` directory in your project and import and add `DualListComponent` to declarations.
 After you can add `<app-dual-list [leftList]="leftList" [rightList]="rightList"></app-dual-list>` to your html file.
