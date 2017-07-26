@@ -5,19 +5,19 @@ class BaseList {
   selected: Array<any> = [];
 
   constructor(list: Array<any> = []) {
-    this.list = list
+    this.list = list;
   }
 }
 
 @Component({
-  selector: 'duallist',
+  selector: 'app-dual-list',
   templateUrl: './duallist.component.html',
   styleUrls: ['./duallist.component.css'],
 })
 export class DualListComponent {
 
-  private _leftList: BaseList;
-  private _rightList: BaseList;
+  public _leftList: BaseList;
+  public _rightList: BaseList;
 
   @Input() display: String = 'name';
   @Input() leftTitle: String = 'Available';
@@ -36,27 +36,28 @@ export class DualListComponent {
 
 
   isSelected(list: Array<any>, item: any): Number {
-    return list.filter(e => Object.is(e, item)).length
+    return list.filter(e => Object.is(e, item)).length;
   }
 
   selectItem(list: Array<any>, item: any): void {
-    let entryItems = list.filter(e => Object.is(e, item));
+    const entryItems = list.filter(e => Object.is(e, item));
 
-    if (entryItems.length)
+    if (entryItems.length) {
       entryItems.forEach(v => {
-        let idx = list.indexOf(v);
-        if (idx+1) list.splice(idx, 1)
+        const idx = list.indexOf(v);
+        if (idx + 1) list.splice(idx, 1);
       });
-    else
+    } else {
       list.push(item);
+    }
   }
 
   moveSelectedItems(fromList: BaseList, toList: BaseList): void {
     // fromList.list = fromList.list.filter(item => !(fromList.selected.indexOf(item)+1));
-    let copy = [...fromList.list];
+    const copy = [...fromList.list];
     fromList.list.length = 0;
     copy.forEach(e => {
-      if (!(fromList.selected.indexOf(e)+1)) fromList.list.push(e)
+      if (!(fromList.selected.indexOf(e) + 1)) fromList.list.push(e);
     });
 
     fromList.selected.forEach(item => toList.list.push(item));
@@ -64,15 +65,15 @@ export class DualListComponent {
   }
 
   selectAll(list: BaseList): void {
-    list.selected = [...list.list]
+    list.selected = [...list.list];
   }
 
   isSelectAll(list: BaseList): boolean  {
-    return list.selected.length == list.list.length && list.selected.every(v1 => list.list.find(v2 => v1 === v2))
+    return list.selected.length === list.list.length && list.selected.every(v1 => list.list.find(v2 => v1 === v2));
   }
 
   selectNone(list: BaseList): void {
-    list.selected = []
+    list.selected = [];
   }
 
   isSelectNone(list: BaseList): boolean {

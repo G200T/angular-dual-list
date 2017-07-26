@@ -5,7 +5,7 @@ For this component need bootstrap styles.
 
 ## Usage
 Copy `duallist` directory in your project and import and add `DualListComponent` to declarations.
-After you can add `<duallist [leftList]="leftList" [rightList]="rightList"></duallist>` to your html file.
+After you can add `<app-dual-list [leftList]="leftList" [rightList]="rightList"></app-dual-list>` to your html file.
 
 ### Component parameters:
 1. **leftList** - The array of object for the left list.
