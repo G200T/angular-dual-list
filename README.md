@@ -1,10 +1,10 @@
-# Angular 2 Dual-list
+# Angular Dual-list
 
-It's simple angular2 dual-list component.
+It's simple dual-list component for Angular 2+.
 For this component need bootstrap styles.
 
 ## Demo
-https://g200t.github.io/angular2-dual-list/
+https://g200t.github.io/angular-dual-list/
 
 ## Usage
 Copy `duallist` directory in your project and import and add `DualListComponent` to declarations.
