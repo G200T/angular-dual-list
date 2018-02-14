@@ -1,6 +1,6 @@
 <h1 style="text-align: center">{{title}}</h1>
 
-<app-dual-list [leftList]="leftList" [rightList]="rightList"></app-dual-list>
+<app-dual-list (updateLists)="leftList=$event.leftList; rightList=$event.rightList" [leftList]="leftList" [rightList]="rightList"></app-dual-list>
 
 <div style="display: flex; flex-direction: row; justify-content: center;">
   <pre style="width: 40%">

@@ -8,7 +8,7 @@ https://g200t.github.io/angular-dual-list/
 
 ## Usage
 Copy `duallist` directory in your project and import and add `DualListComponent` to declarations.
-After you can add `<app-dual-list [leftList]="leftList" [rightList]="rightList"></app-dual-list>` to your html file.
+After you can add `<app-dual-list (updateLists)="leftList=$event.leftList; rightList=$event.rightList" [leftList]="leftList" [rightList]="rightList"></app-dual-list>` to your html file.
 
 ### Component parameters:
 1. **leftList** - The array of object for the left list.

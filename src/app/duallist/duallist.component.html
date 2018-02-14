@@ -3,13 +3,13 @@
     <div class="panel-heading">
       <label>{{ leftTitle }}</label>
       <div class="btn-group">
-        <button class="btn btn-default" (click)="selectAll(_leftList)" [disabled]="isSelectAll(_leftList)">All</button>
-        <button class="btn btn-default" (click)="selectNone(_leftList)" [disabled]="isSelectNone(_leftList)">None</button>
+        <button class="btn btn-default" (click)="_leftList.selectAll()" [disabled]="_leftList.isSelectedAll()">All</button>
+        <button class="btn btn-default" (click)="_leftList.selectNone()" [disabled]="_leftList.isSelectedNone()">None</button>
       </div>
     </div>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of _leftList.list" (click)="selectItem(_leftList.selected, item)"
-          [ngClass]="{active: isSelected(_leftList.selected, item)}">
+      <li class="list-group-item" *ngFor="let item of _leftList.base" (click)="selectItem(_leftList.selected, item)"
+          [ngClass]="{ active: isSelected(_leftList.selected, item) }">
         <span>{{ item[display] }}</span>
       </li>
     </ul>
@@ -26,13 +26,13 @@
     <div class="panel-heading">
       <label>{{ rightTitle }}</label>
       <div class="btn-group">
-        <button class="btn btn-default" (click)="selectAll(_rightList)" [disabled]="isSelectAll(_rightList)">All</button>
-        <button class="btn btn-default" (click)="selectNone(_rightList)" [disabled]="isSelectNone(_rightList)">None</button>
+        <button class="btn btn-default" (click)="_rightList.selectAll()" [disabled]="_rightList.isSelectedAll()">All</button>
+        <button class="btn btn-default" (click)="_rightList.selectNone()" [disabled]="_rightList.isSelectedNone()">None</button>
       </div>
     </div>
     <ul class="list-group">
-      <li class="list-group-item"  *ngFor="let item of _rightList.list" (click)="selectItem(_rightList.selected, item)"
-          [ngClass]="{active: isSelected(_rightList.selected, item)}">
+      <li class="list-group-item"  *ngFor="let item of _rightList.base" (click)="selectItem(_rightList.selected, item)"
+          [ngClass]="{ active: isSelected(_rightList.selected, item) }">
         <span>{{ item[display] }}</span>
       </li>
     </ul>

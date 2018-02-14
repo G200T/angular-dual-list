@@ -1,11 +1,27 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 class BaseList {
-  list: Array<any>;
+  base: Array<any>;
   selected: Array<any> = [];
 
   constructor(list: Array<any> = []) {
-    this.list = list;
+    this.base = [...list];
+  }
+
+  selectNone(): void {
+    this.selected = [];
+  }
+
+  isSelectedNone(): boolean {
+    return this.selected.length === 0;
+  }
+
+  selectAll(): void {
+    this.selected = [...this.base];
+  }
+
+  isSelectedAll(): boolean  {
+    return this.selected.length === this.base.length && this.selected.every(v1 => this.base.find(v2 => v1 === v2));
   }
 }
 
@@ -32,11 +48,12 @@ export class DualListComponent {
     this._rightList = new BaseList(list);
   }
 
+  @Output() updateLists = new EventEmitter<any>();
+
   constructor() { }
 
-
-  isSelected(list: Array<any>, item: any): Number {
-    return list.filter(e => Object.is(e, item)).length;
+  isSelected(list: Array<any>, item: any): boolean {
+    return Boolean(list.filter(e => Object.is(e, item)).length);
   }
 
   selectItem(list: Array<any>, item: any): void {
@@ -53,30 +70,10 @@ export class DualListComponent {
   }
 
   moveSelectedItems(fromList: BaseList, toList: BaseList): void {
-    // fromList.list = fromList.list.filter(item => !(fromList.selected.indexOf(item)+1));
-    const copy = [...fromList.list];
-    fromList.list.length = 0;
-    copy.forEach(e => {
-      if (!(fromList.selected.indexOf(e) + 1)) fromList.list.push(e);
-    });
+    fromList.base = fromList.base.filter(item => !(fromList.selected.indexOf(item) + 1));
+    toList.base = toList.base.concat(fromList.selected);
+    fromList.selectNone();
 
-    fromList.selected.forEach(item => toList.list.push(item));
-    fromList.selected = [];
-  }
-
-  selectAll(list: BaseList): void {
-    list.selected = [...list.list];
-  }
-
-  isSelectAll(list: BaseList): boolean  {
-    return list.selected.length === list.list.length && list.selected.every(v1 => list.list.find(v2 => v1 === v2));
-  }
-
-  selectNone(list: BaseList): void {
-    list.selected = [];
-  }
-
-  isSelectNone(list: BaseList): boolean {
-    return list.selected.length === 0;
+    this.updateLists.next({leftList: this._leftList.base, rightList: this._rightList.base});
   }
 }
